@@ -10,7 +10,7 @@ namespace Bombyx.Data.InputLevel
         public static List<InputModel> GetElementsInputList(string query)
         {
             DBConnectInput db = new DBConnectInput();
-            DataTable data = db.SelectInputs(query);
+            DataTable data = db.SelectData(query);
 
             var results = new List<InputModel>();
             IEnumerable<DataRow> dataRows = null;

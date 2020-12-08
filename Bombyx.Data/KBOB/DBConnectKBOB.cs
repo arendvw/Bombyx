@@ -6,21 +6,6 @@ namespace Bombyx.Data.KBOB
 {
     public class DBConnectKBOB
     {
-        private readonly SqlConnection connection;        
-
-        public DBConnectKBOB()
-        {
-            connection = new SqlConnection(Config.connectAzure);           
-        }
-
-        private void CheckConnectionStatus()
-        {
-            if (connection.State == ConnectionState.Open)
-            {
-                connection.Close();
-            }
-        }
-
         public DataTable SelectKBOBdata(string table)
         {
             var query = "";
@@ -37,29 +22,8 @@ namespace Bombyx.Data.KBOB
                     query = "SELECT * FROM KbobServices";
                     break;
             }
-            
-            var results = new DataTable();
 
-            CheckConnectionStatus();
-
-            try
-            {
-                var cmd = new SqlCommand(query, connection);
-                connection.Open();
-                var da = new SqlDataAdapter(cmd);
-                da.Fill(results);
-                
-                connection.Close();
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                CheckConnectionStatus();               
-            }
-
-            return results;
+            return Config.DataAdapter.GetResults(query);
         }      
     }
 }

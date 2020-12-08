@@ -13,7 +13,7 @@ namespace Bombyx.Data.CompLevel
                         "UNION " +
                         "SELECT DISTINCT ComponentCode, CategoryEnglish FROM dbo.BtkWindows";
             DBConnectComp db = new DBConnectComp();
-            DataTable data = db.SelectComponents(query);
+            DataTable data = db.SelectData(query);
 
             List<string> results = data.AsEnumerable().Select(x => x[0].ToString().Trim() + " - " + x[1].ToString().Trim()).ToList();
 
@@ -34,7 +34,7 @@ namespace Bombyx.Data.CompLevel
             }
             
             DBConnectComp db = new DBConnectComp();
-            DataTable data = db.SelectComponents(query);
+            DataTable data = db.SelectData(query);
             var results = new List<string>();
 
             IEnumerable<DataRow> dataRows = from row in data.AsEnumerable()
@@ -70,7 +70,7 @@ namespace Bombyx.Data.CompLevel
             }
             
             DBConnectComp db = new DBConnectComp();
-            DataTable data = db.SelectComponents(query);
+            DataTable data = db.SelectData(query);
             var results = new List<ComponentModel>();
             IEnumerable<DataRow> dataRows = null;
 
@@ -139,7 +139,7 @@ namespace Bombyx.Data.CompLevel
                          "WHERE bkw.SortCode = '" + sortcode + "'";
 
             DBConnectComp db = new DBConnectComp();
-            DataTable data = db.SelectComponents(query);
+            DataTable data = db.SelectData(query);
             var results = new List<WindowModel>();
             IEnumerable<DataRow> dataRows = null;
 
